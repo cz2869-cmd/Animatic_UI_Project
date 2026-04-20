@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animator Workspace</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='animator/animator.css') }}">
+    <style>
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 100vh;
+            display: block;
+            background: #008080;
+        }
+
+        .workspace-page {
+            min-height: 100vh;
+            padding: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .workspace-stage {
+            width: 100%;
+            max-width: 950px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: none;
+            padding: 0;
+        }
+        .animator-module {
+            width: 100%;
+            max-width: 900px;
+            min-width: 320px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <main class="workspace-page">
+        <div class="workspace-stage" id="workspace-stage">
+            {% set animator_id = 'lesson-base' %}
+            {% set file_name = 'lesson-1.ani' %}
+            {% set fps = 12 %}
+            {% set max_frames = 30 %}
+            {% include 'components/animator_canvas.html' %}
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='animator/animator.js') }}"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            window.AnimaticCanvasModule.mount('#animator-root-lesson-base', {
+                draggable: true
+            });
+        });
+    </script>
+</body>
+</html>
